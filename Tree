@@ -1,0 +1,77 @@
+local function CF()
+  if turtle.getFuelLevel() <1 then
+    turtle.select(1)
+    turtle.refuel(1)
+  end
+end
+
+
+
+local function square()
+  local count=0
+  CF()
+  turtle.dig()
+  turtle.forward()
+  while turtle.detectUp() do
+    turtle.dig()
+    CF()
+    turtle.digUp()
+    turtle.up()
+    count = count + 1
+  end
+  turtle.dig()
+  print(count)
+  turtle.turnRight()
+  turtle.dig()
+  CF()
+  turtle.forward()
+  turtle.turnLeft()
+  for i=1,count do
+    turtle.dig()
+    turtle.digDown()
+    CF()
+    turtle.down()
+  end
+  turtle.dig()
+end
+
+
+local function replant()
+  CF()
+  turtle.select(15)
+  turtle.suck()
+  turtle.place()
+  turtle.turnLeft()
+  turtle.suck()
+  turtle.forward()
+  turtle.suck()
+  turtle.turnRight()
+  turtle.suck()
+  turtle.place()
+  turtle.turnRight()
+  turtle.suck()
+  turtle.place()
+  turtle.turnRight()
+  turtle.suck()
+  turtle.forward()
+  turtle.suck()
+  for slot=3,7 do
+    turtle.select(slot)
+    turtle.drop()
+  end
+  turtle.turnLeft()
+  turtle.turnLeft()
+  turtle.select(15)
+  turtle.place()
+  turtle.select(16)
+  turtle.place()
+  turtle.place()
+  turtle.place()
+  turtle.place()
+
+end
+
+while true do
+  square()
+  replant()
+end
